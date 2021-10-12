@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { ILLogo } from '../../assets';
+import { ICLogo } from '../../assets';
 import { Button, Gap, Input, Link } from '../../components';
+import { colors } from '../../utils';
 
 const SignIn = () => {
     return (
         <View style={styles.container}>
-            <ILLogo />
+            <ICLogo />
             <Text style={styles.title}>Masuk dan mulai berkonsultasi</Text>
             <Input label="Email Address" />
             <Gap height={24} />
@@ -25,13 +26,13 @@ export default SignIn
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: colors.white,
         flex: 1,
         padding: 40
     },
     title: {
         fontSize: 20,
-        color: '#112340',
+        color: colors.text.primary,
         fontFamily: 'Nunito-SemiBold',
         marginVertical: 40,
         maxWidth: 160

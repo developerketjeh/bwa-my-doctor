@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { ILLogo } from '../../assets';
+import { ICLogo } from '../../assets';
+import { colors } from '../../utils/colors';
 
 const SplashScreen = ({navigation}) => {
     useEffect(() => {
@@ -10,7 +11,7 @@ const SplashScreen = ({navigation}) => {
     })
     return (
         <View style={styles.container}>
-            <ILLogo />
+            <ICLogo />
             <Text style={styles.logoText}>My Doctor</Text>
         </View>
     )
@@ -22,11 +23,11 @@ const styles = StyleSheet.create({
     logoText: {
         fontSize: 20,
         fontFamily: 'Nunito-SemiBold',
-        color: '#112340',
+        color: colors.text.primary,
         paddingTop: 20
     },
     container: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: colors.white,
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
