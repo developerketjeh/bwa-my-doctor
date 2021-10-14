@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { ICLogo } from '../../assets';
+import { fonts } from '../../utils';
 import { colors } from '../../utils/colors';
 
 const SplashScreen = ({navigation}) => {
@@ -22,7 +23,7 @@ export default SplashScreen
 const styles = StyleSheet.create({
     logoText: {
         fontSize: 20,
-        fontFamily: 'Nunito-SemiBold',
+        fontFamily: fonts.primary[600],
         color: colors.text.primary,
         paddingTop: 20
     },

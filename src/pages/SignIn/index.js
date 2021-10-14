@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { ICLogo } from '../../assets';
 import { Button, Gap, Input, Link } from '../../components';
-import { colors } from '../../utils';
+import { colors, fonts } from '../../utils';
 
 const SignIn = () => {
     return (
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         color: colors.text.primary,
-        fontFamily: 'Nunito-SemiBold',
+        fontFamily: fonts.primary[600],
         marginVertical: 40,
         maxWidth: 160
     }

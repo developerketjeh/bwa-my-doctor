@@ -2,7 +2,7 @@ import React from 'react'
 import { ImageBackground, StyleSheet, Text, View } from 'react-native'
 import { ILGetStarted, ICLogo } from '../../assets'
 import { Button, Gap } from '../../components'
-import { colors } from '../../utils'
+import { colors, fonts } from '../../utils'
 
 const GetStarted = ({ navigation }) => {
     return (
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 28,
         color: colors.white,
-        fontFamily: 'Nunito-SemiBold',
+        fontFamily: fonts.primary[600],
         marginTop: 91
     }
 })
