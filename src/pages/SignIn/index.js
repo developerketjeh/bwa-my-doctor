@@ -4,7 +4,7 @@ import { ICLogo } from '../../assets';
 import { Button, Gap, Input, Link } from '../../components';
 import { colors, fonts } from '../../utils';
 
-const SignIn = () => {
+const SignIn = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <ICLogo />
@@ -15,7 +15,7 @@ const SignIn = () => {
             <Gap height={10} />
             <Link text="Forgot My Password" size={12} />
             <Gap height={40} />
-            <Button title="Sign In" />
+            <Button title="Sign In" onPress={() => navigation.replace("MainApp")} />
             <Gap height={30} />
             <Link text="Create New Account" size={16} align="center" />
         </View>
