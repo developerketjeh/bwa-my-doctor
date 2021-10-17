@@ -8,7 +8,11 @@ import ICHospital from './ic_hospital.svg';
 import ICLogo from './ic_logo.svg';
 import ICMessagesActive from './ic_messages_active.svg';
 import ICMessages from './ic_messages.svg';
+import ICObat from './ic_obat.svg';
+import ICPsikiater from './ic_psikiater.svg';
 import ICRemovePhoto from './ic_remove_photo.svg';
+import ICStar from './ic_star.svg';
+import ICTermometer from './ic_termometer.svg';
 
 export {
     ICAddPhoto,
@@ -21,5 +25,9 @@ export {
     ICLogo,
     ICMessagesActive,
     ICMessages,
-    ICRemovePhoto
+    ICObat,
+    ICPsikiater,
+    ICRemovePhoto,
+    ICStar,
+    ICTermometer
 }
