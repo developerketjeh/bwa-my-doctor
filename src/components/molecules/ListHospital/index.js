@@ -1,15 +1,14 @@
-import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
-import { DMHospital1 } from '../../../assets'
-import { colors, fonts } from '../../../utils'
+import React from 'react';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import { colors, fonts } from '../../../utils';
 
-const ListHospital = () => {
+const ListHospital = (props) => {
     return (
         <View style={styles.container}>
-            <Image source={DMHospital1} style={styles.hospital} />
+            <Image source={props.picture} style={styles.hospital} />
             <View>
-                <Text style={styles.name}>Rumah Sakit Citra Bunga Merdeka</Text>
-                <Text style={styles.alamat}>Jln. Surya Sejahtera 20</Text>
+                <Text style={styles.name}>{props.title}</Text>
+                <Text style={styles.alamat}>{props.alamat}</Text>
             </View>
         </View>
     )

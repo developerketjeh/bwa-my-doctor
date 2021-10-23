@@ -2,6 +2,7 @@ import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { DoctorCategory, Gap, HomeProfile, NewsItem, RatedDoctor } from '../../components';
 import { colors, fonts } from '../../utils';
+import { JSONCategoryDoctor, JSONRatedDoctor, JSONNews } from '../../json';
 
 const Doctor = () => {
     return (
@@ -18,10 +19,11 @@ const Doctor = () => {
                         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                             <View style={styles.category}>
                                 <Gap width={32} />
-                                <DoctorCategory />
-                                <DoctorCategory />
-                                <DoctorCategory />
-                                <DoctorCategory />
+                                {
+                                    JSONCategoryDoctor.data.map((category) => (
+                                        <DoctorCategory category={category.category} key={category.id} />
+                                    ))
+                                }
                                 <Gap width={22} />
                             </View>
                         </ScrollView>
@@ -29,15 +31,19 @@ const Doctor = () => {
                     <Gap height={30} />
                     <View style={styles.wrapperContent}>
                         <Text style={styles.sectionLabel}>Top Rated Doctors</Text>
-                        <RatedDoctor />
-                        <RatedDoctor />
-                        <RatedDoctor />
+                        {
+                            JSONRatedDoctor.data.map(rated => (
+                                <RatedDoctor role={rated.role} doctorName={rated.doctorName} key={rated.id} />
+                            ))
+                        }
                         <Gap height={30} />
                         <Text style={styles.sectionLabel}>Good News</Text>
                     </View>
-                    <NewsItem />
-                    <NewsItem />
-                    <NewsItem />
+                    {
+                        JSONNews.data.map(news => (
+                            <NewsItem title={news.title} time={news.time} key={news.id} />
+                        ))
+                    }
                     <Gap height={30} />
                 </ScrollView>
             </View>

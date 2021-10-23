@@ -1,0 +1,19 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "doctorName": "Alexa Rachel",
+            "role": "Pediatrician"
+        },
+        {
+            "id": 2,
+            "doctorName": "Sunny Frank",
+            "role": "Dentist"
+        },
+        {
+            "id": 3,
+            "doctorName": "Poe Minn",
+            "role": "Podiatrist"
+        }
+    ]
+}

@@ -1,14 +1,26 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { ICTermometer } from '../../../assets';
+import { ICObat, ICPsikiater, ICTermometer } from '../../../assets';
 import { colors, fonts } from '../../../utils';
 
-const DoctorCategory = () => {
+const DoctorCategory = ({ category }) => {
+    const Icon = () => {
+        if (category === 'umum') {
+            return <ICTermometer style={styles.icon} />
+        }
+        if (category === 'psikiater') {
+            return <ICPsikiater style={styles.icon} />
+        }
+        if (category === 'obat') {
+            return <ICObat style={styles.icon} />
+        }
+        return <ICTermometer style={styles.icon} />
+    }
     return (
         <View style={styles.container}>
-            <ICTermometer style={styles.icon} />
+            <Icon />
             <Text style={styles.label}>Saya butuh</Text>
-            <Text style={styles.category}>dokter umum</Text>
+            <Text style={styles.category}>{category === 'umum' || category === 'obat' ? `dokter ${category}` : category}</Text>
         </View>
     )
 }
