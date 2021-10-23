@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { ICObat, ICPsikiater, ICTermometer } from '../../../assets';
 import { colors, fonts } from '../../../utils';
 
-const DoctorCategory = ({ category }) => {
+const DoctorCategory = ({ category, onPress }) => {
     const Icon = () => {
         if (category === 'umum') {
             return <ICTermometer style={styles.icon} />
@@ -17,11 +17,11 @@ const DoctorCategory = ({ category }) => {
         return <ICTermometer style={styles.icon} />
     }
     return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={onPress}>
             <Icon />
             <Text style={styles.label}>Saya butuh</Text>
             <Text style={styles.category}>{category === 'umum' || category === 'obat' ? `dokter ${category}` : category}</Text>
-        </View>
+        </TouchableOpacity>
     )
 }
 

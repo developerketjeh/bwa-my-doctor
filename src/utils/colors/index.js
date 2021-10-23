@@ -4,7 +4,10 @@ const mainColors = {
     dark1: '#112340',
     dark2: '#495A75',
     grey1: '#7D8797',
-    grey2: '#E9E9E9'
+    grey2: '#E9E9E9',
+    grey3: '#8092AF',
+    grey4: '#EDEEF0',
+    blue1: '#0066CB',
 }
 
 export const colors = {
@@ -14,7 +17,8 @@ export const colors = {
         primary: mainColors.dark1,
         secondary: mainColors.grey1,
         menuInactive: mainColors.dark2,
-        menuActive: mainColors.green1
+        menuActive: mainColors.green1,
+        role: mainColors.grey3,
     },
     white: '#FFFFFF',
     black: '#000000',
@@ -26,8 +30,12 @@ export const colors = {
         secondary: {
             background: '#FFFFFF',
             text: mainColors.dark1
+        },
+        message: {
+            background: mainColors.blue1
         }
     },
     border: mainColors.grey2,
-    cardLight: mainColors.green2
+    cardLight: mainColors.green2,
+    disabled: mainColors.grey4
 }

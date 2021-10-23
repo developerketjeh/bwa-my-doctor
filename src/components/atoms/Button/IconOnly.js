@@ -1,8 +1,8 @@
-import React from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
-import { ICArrowDark, ICArrowWhite } from '../../../assets'
+import React from 'react';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { ICArrowDark, ICArrowWhite } from '../../../assets';
 
-const IconOnly = ({onPress, icon}) => {
+const IconOnly = ({ onPress, icon }) => {
     const Icon = () => {
         if (icon === 'back-dark') {
             return <ICArrowDark />

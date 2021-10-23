@@ -4,7 +4,7 @@ import { DoctorCategory, Gap, HomeProfile, NewsItem, RatedDoctor } from '../../c
 import { colors, fonts } from '../../utils';
 import { JSONCategoryDoctor, JSONRatedDoctor, JSONNews } from '../../json';
 
-const Doctor = () => {
+const Doctor = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.content}>
@@ -21,7 +21,7 @@ const Doctor = () => {
                                 <Gap width={32} />
                                 {
                                     JSONCategoryDoctor.data.map((category) => (
-                                        <DoctorCategory category={category.category} key={category.id} />
+                                        <DoctorCategory onPress={() => navigation.navigate("ChooseDoctor")} category={category.category} key={category.id} />
                                     ))
                                 }
                                 <Gap width={22} />

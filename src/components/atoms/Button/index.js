@@ -1,13 +1,17 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { colors, fonts } from '../../../utils'
+import BtnIconSend from './BtnIconSend'
 import IconOnly from './IconOnly'
 
-const Button = ({ type, title, onPress, icon }) => {
+const Button = ({ type, title, onPress, icon, disabled }) => {
     if (type === 'icon-only') {
         return (
             <IconOnly icon={icon} onPress={onPress} />
         )
+    }
+    if (type === 'btn-icon-send') {
+        return <BtnIconSend onPress={onPress} disabled={disabled} />
     }
     return (
         <TouchableOpacity style={styles.container(type)} onPress={onPress}>

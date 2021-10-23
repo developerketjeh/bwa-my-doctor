@@ -1,3 +1,5 @@
+import Chat from "./Chat";
+import ChooseDoctor from "./ChooseDoctor";
 import Doctor from "./Doctor";
 import GetStarted from "./GetStarted";
 import Hospital from "./Hospital";
@@ -8,6 +10,8 @@ import SplashScreen from "./SplashScreen";
 import UploadPhoto from "./UploadPhoto";
 
 export {
+    Chat,
+    ChooseDoctor,
     Doctor,
     GetStarted,
     Hospital,

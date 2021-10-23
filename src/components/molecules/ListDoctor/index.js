@@ -1,16 +1,18 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ICArrowGreyRight } from '../../../assets';
 import { colors, fonts } from '../../../utils';
 
-const ListDoctor = ({ profile, name, desc }) => {
+const ListDoctor = ({ profile, name, desc, type, onPress }) => {
     return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={onPress}>
             <Image source={profile} style={styles.image} />
             <View style={styles.wrapperTitle}>
                 <Text style={styles.name}>{name}</Text>
                 <Text style={styles.chat}>{desc}</Text>
             </View>
-        </View>
+            {type === 'next' && <ICArrowGreyRight />}
+        </TouchableOpacity>
     )
 }
 
@@ -22,7 +24,8 @@ const styles = StyleSheet.create({
         padding: 16,
         borderBottomWidth: 1,
         borderBottomColor: colors.border,
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'space-between',
     },
     image: {
         width: 46,
