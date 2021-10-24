@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
+import { DMUser } from '../../assets';
 import { Button, Gap, Header, Input, Profile } from '../../components';
 import { colors } from '../../utils';
 
@@ -9,7 +10,7 @@ const UpdateProfile = ({ navigation }) => {
             <Header title="Edit Profile" onPress={() => navigation.goBack()} />
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.form}>
-                    <Profile type="edit-profile" />
+                    <Profile avatar={DMUser} type="edit-profile" />
                     <Gap height={26} />
                     <Input label="Full Name" />
                     <Gap height={24} />

@@ -2,7 +2,8 @@ import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { DoctorCategory, Gap, HomeProfile, NewsItem, RatedDoctor } from '../../components';
 import { colors, fonts } from '../../utils';
-import { JSONCategoryDoctor, JSONRatedDoctor, JSONNews } from '../../json';
+import { JSONCategoryDoctor, JSONNews } from '../../json';
+import { DMDoctor1, DMDoctor2, DMDoctor3 } from '../../assets';
 
 const Doctor = ({ navigation }) => {
     return (
@@ -31,11 +32,9 @@ const Doctor = ({ navigation }) => {
                     <Gap height={30} />
                     <View style={styles.wrapperContent}>
                         <Text style={styles.sectionLabel}>Top Rated Doctors</Text>
-                        {
-                            JSONRatedDoctor.data.map(rated => (
-                                <RatedDoctor role={rated.role} doctorName={rated.doctorName} key={rated.id} />
-                            ))
-                        }
+                        <RatedDoctor avatar={DMDoctor1} onPress={() => navigation.navigate("DoctorProfile")} role="Pediatrician" doctorName="Alexa Rachel" />
+                        <RatedDoctor avatar={DMDoctor2} onPress={() => navigation.navigate("DoctorProfile")} role="Dentist" doctorName="Sunny Frank" />
+                        <RatedDoctor avatar={DMDoctor3} onPress={() => navigation.navigate("DoctorProfile")} role="Podiatrist" doctorName="Poe Minn" />
                         <Gap height={30} />
                         <Text style={styles.sectionLabel}>Good News</Text>
                     </View>

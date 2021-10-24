@@ -1,12 +1,12 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
-import { DMDoctor1, ICStar } from '../../../assets';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ICStar } from '../../../assets';
 import { colors, fonts } from '../../../utils';
 
-const RatedDoctor = ({ role, doctorName }) => {
+const RatedDoctor = ({ role, doctorName, onPress, avatar }) => {
     return (
-        <View style={styles.container}>
-            <Image source={DMDoctor1} style={styles.avatar} />
+        <TouchableOpacity onPress={onPress} style={styles.container}>
+            <Image source={avatar} style={styles.avatar} />
             <View style={styles.profile}>
                 <View>
                     <Text style={styles.name}>{doctorName}</Text>
@@ -20,7 +20,7 @@ const RatedDoctor = ({ role, doctorName }) => {
                 <ICStar />
                 <ICStar />
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingBottom: 16
+        paddingBottom: 16,
+        alignItems: 'center',
     },
     profile: {
         flex: 1

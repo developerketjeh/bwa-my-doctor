@@ -4,11 +4,13 @@ import ICArrowGreyRight from './ic_arrow_grey_right.svg';
 import ICArrowWhite from './ic_arrow_white.svg';
 import ICDoctorActive from './ic_doctor_active.svg';
 import ICDoctor from './ic_doctor.svg';
+import ICFemale from './ic_female.svg';
 import ICFile from './ic_file.svg';
 import ICHospitalActive from './ic_hospital_active.svg';
 import ICHospital from './ic_hospital.svg';
 import ICLanguage from './ic_language.svg';
 import ICLogo from './ic_logo.svg';
+import ICMale from './ic_male.svg';
 import ICMessagesActive from './ic_messages_active.svg';
 import ICMessages from './ic_messages.svg';
 import ICObat from './ic_obat.svg';
@@ -28,11 +30,13 @@ export {
     ICArrowWhite,
     ICDoctorActive,
     ICDoctor,
+    ICFemale,
     ICFile,
     ICHospitalActive,
     ICHospital,
     ICLanguage,
     ICLogo,
+    ICMale,
     ICMessagesActive,
     ICMessages,
     ICObat,

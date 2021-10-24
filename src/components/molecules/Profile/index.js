@@ -1,14 +1,16 @@
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { DMUser, ICRemovePhoto } from '../../../assets';
+import { ICFemale, ICMale, ICRemovePhoto } from '../../../assets';
 import { colors, fonts } from '../../../utils';
 
-const Profile = ({ name, role, type }) => {
+const Profile = ({ name, role, type, avatar }) => {
     return (
         <View style={styles.container}>
             <View style={styles.avatarWrapper}>
-                <Image source={DMUser} style={styles.avatar} />
+                <Image source={avatar} style={styles.avatar} />
                 {type === 'edit-profile' && <ICRemovePhoto style={styles.icon} />}
+                {type === 'doctor-female' && <ICFemale style={styles.icon} />}
+                {type === 'doctor-male' && <ICMale style={styles.icon} />}
             </View>
             {name && <Text style={styles.name}>{name}</Text>}
             {role && <Text style={styles.role}>{role}</Text>}

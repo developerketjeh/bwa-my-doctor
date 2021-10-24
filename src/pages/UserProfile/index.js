@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import { DMUser } from '../../assets';
 import { Gap, Header, List, Profile } from '../../components';
 import { colors } from '../../utils';
 
@@ -8,7 +9,7 @@ const UserProfile = ({ navigation }) => {
         <View style={styles.container}>
             <Header title="Profile" onPress={() => navigation.goBack()} />
             <Gap height={10} />
-            <Profile name="Shayna Melinda" role="Product Designer" />
+            <Profile avatar={DMUser} name="Shayna Melinda" role="Product Designer" />
             <Gap height={14} />
             <List onPress={() => navigation.navigate("UpdateProfile")} icon="profile" name="Edit Profile" desc="Last updated yesterday" type="next" />
             <List icon="language" name="Language" desc="Available 12 languages" type="next" />

@@ -1,6 +1,7 @@
 import Chat from "./Chat";
 import ChooseDoctor from "./ChooseDoctor";
 import Doctor from "./Doctor";
+import DoctorProfile from "./DoctorProfile";
 import GetStarted from "./GetStarted";
 import Hospital from "./Hospital";
 import Messages from "./Messages";
@@ -15,6 +16,7 @@ export {
     Chat,
     ChooseDoctor,
     Doctor,
+    DoctorProfile,
     GetStarted,
     Hospital,
     Messages,
