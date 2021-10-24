@@ -13,6 +13,7 @@ const mainColors = {
 export const colors = {
     primary: mainColors.green1,
     secondary: mainColors.dark1,
+    tertiary: mainColors.blue1,
     text: {
         primary: mainColors.dark1,
         secondary: mainColors.grey1,
