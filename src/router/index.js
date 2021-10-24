@@ -1,6 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SplashScreen, GetStarted, SignIn, SignUp, UploadPhoto, Doctor, Messages, Hospital, ChooseDoctor, Chat, UserProfile } from '../pages';
+import { SplashScreen, GetStarted, SignIn, SignUp, UploadPhoto, Doctor, Messages, Hospital, ChooseDoctor, Chat, UserProfile, UpdateProfile } from '../pages';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomNavigator } from '../components';
 
@@ -28,6 +28,7 @@ const Router = () => {
             <Stack.Screen name="ChooseDoctor" component={ChooseDoctor} options={{ headerShown: false }} />
             <Stack.Screen name="Chat" component={Chat} options={{ headerShown: false }} />
             <Stack.Screen name="UserProfile" component={UserProfile} options={{ headerShown: false }} />
+            <Stack.Screen name="UpdateProfile" component={UpdateProfile} options={{ headerShown: false }} />
             <Stack.Screen name="MainApp" component={MainApp} options={{ headerShown: false }} />
         </Stack.Navigator>
     );

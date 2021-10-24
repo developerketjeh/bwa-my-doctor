@@ -7,6 +7,7 @@ import Messages from "./Messages";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import SplashScreen from "./SplashScreen";
+import UpdateProfile from "./UpdateProfile";
 import UploadPhoto from "./UploadPhoto";
 import UserProfile from "./UserProfile";
 
@@ -20,6 +21,7 @@ export {
     SignIn,
     SignUp,
     SplashScreen,
+    UpdateProfile,
     UploadPhoto,
     UserProfile,
 }

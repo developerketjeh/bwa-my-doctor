@@ -1,16 +1,17 @@
-import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
-import { DMUser } from '../../../assets'
-import { colors, fonts } from '../../../utils'
+import React from 'react';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import { DMUser, ICRemovePhoto } from '../../../assets';
+import { colors, fonts } from '../../../utils';
 
-const Profile = ({ name, role }) => {
+const Profile = ({ name, role, type }) => {
     return (
         <View style={styles.container}>
             <View style={styles.avatarWrapper}>
                 <Image source={DMUser} style={styles.avatar} />
+                {type === 'edit-profile' && <ICRemovePhoto style={styles.icon} />}
             </View>
-            <Text style={styles.name}>{name}</Text>
-            <Text style={styles.role}>{role}</Text>
+            {name && <Text style={styles.name}>{name}</Text>}
+            {role && <Text style={styles.role}>{role}</Text>}
         </View>
     )
 }
@@ -49,5 +50,10 @@ const styles = StyleSheet.create({
         color: colors.text.secondary,
         marginTop: 2,
         textAlign: 'center'
+    },
+    icon: {
+        position: 'absolute',
+        bottom: 5,
+        right: 0
     },
 })
