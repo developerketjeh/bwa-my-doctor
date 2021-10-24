@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { DMDoctor4 } from '../../assets';
 import { Button, Gap, Header, Profile, ProfileItem } from '../../components';
 import { colors } from '../../utils';
@@ -14,7 +14,7 @@ const DoctorProfile = ({ navigation }) => {
             <ProfileItem label="Tempat Praktik" value="Rumah Sakit Umum, Bandung" />
             <ProfileItem label="No. STR" value="0000116622081996" />
             <View style={styles.btnProfile}>
-                <Button title="Start Consultation" />
+                <Button title="Start Consultation" onPress={() => navigation.navigate("Chat")} />
             </View>
         </View>
     )

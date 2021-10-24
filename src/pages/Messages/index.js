@@ -4,7 +4,7 @@ import { DMDoctor1, DMDoctor2, DMDoctor3 } from '../../assets';
 import { List } from '../../components';
 import { colors, fonts } from '../../utils';
 
-const Messages = () => {
+const Messages = ({ navigation }) => {
     const [messages, setMessages] = useState([
         {
             id: 1,
@@ -31,7 +31,7 @@ const Messages = () => {
                 <Text style={styles.title}>Messages</Text>
                 {
                     messages.map(message => (
-                        <List key={message.id} profile={message.profile} name={message.name} desc={message.desc} />
+                        <List key={message.id} profile={message.profile} name={message.name} desc={message.desc} onPress={() => navigation.navigate("Chat")} />
                     ))
                 }
             </View>

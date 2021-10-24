@@ -1,6 +1,6 @@
-import React from 'react'
-import { StyleSheet, Text, TextInput, View } from 'react-native'
-import { colors, fonts } from '../../../utils'
+import React from 'react';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { colors, fonts } from '../../../utils';
 
 const Input = ({ label }) => {
     return (

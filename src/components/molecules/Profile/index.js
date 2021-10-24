@@ -3,12 +3,12 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import { ICFemale, ICMale, ICRemovePhoto } from '../../../assets';
 import { colors, fonts } from '../../../utils';
 
-const Profile = ({ name, role, type, avatar }) => {
+const Profile = ({ name, role, type, avatar, isRemove }) => {
     return (
         <View style={styles.container}>
             <View style={styles.avatarWrapper}>
                 <Image source={avatar} style={styles.avatar} />
-                {type === 'edit-profile' && <ICRemovePhoto style={styles.icon} />}
+                {isRemove && <ICRemovePhoto style={styles.icon} />}
                 {type === 'doctor-female' && <ICFemale style={styles.icon} />}
                 {type === 'doctor-male' && <ICMale style={styles.icon} />}
             </View>

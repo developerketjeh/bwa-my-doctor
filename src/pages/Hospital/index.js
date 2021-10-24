@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 import { DMHospital1, DMHospital2, DMHospital3, ILHospitalBackground } from '../../assets';
 import { ListHospital } from '../../components';
 import { colors, fonts } from '../../utils';

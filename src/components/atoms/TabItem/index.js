@@ -1,7 +1,7 @@
-import React from 'react'
-import { StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { ICDoctor, ICDoctorActive, ICHospital, ICHospitalActive, ICMessages, ICMessagesActive } from '../../../assets'
-import { colors, fonts } from '../../../utils'
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { ICDoctor, ICDoctorActive, ICHospital, ICHospitalActive, ICMessages, ICMessagesActive } from '../../../assets';
+import { colors, fonts } from '../../../utils';
 
 const TabItem = ({ title, active, onPress, onLongPress }) => {
     const Icon = () => {

@@ -2,8 +2,8 @@ import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { DoctorCategory, Gap, HomeProfile, NewsItem, RatedDoctor } from '../../components';
 import { colors, fonts } from '../../utils';
-import { JSONCategoryDoctor, JSONNews } from '../../json';
-import { DMDoctor1, DMDoctor2, DMDoctor3 } from '../../assets';
+import { JSONCategoryDoctor } from '../../json';
+import { DMDoctor1, DMDoctor2, DMDoctor3, DMNews1, DMNews2, DMNews3 } from '../../assets';
 
 const Doctor = ({ navigation }) => {
     return (
@@ -38,11 +38,9 @@ const Doctor = ({ navigation }) => {
                         <Gap height={30} />
                         <Text style={styles.sectionLabel}>Good News</Text>
                     </View>
-                    {
-                        JSONNews.data.map(news => (
-                            <NewsItem title={news.title} time={news.time} key={news.id} />
-                        ))
-                    }
+                    <NewsItem title="Is it safe to stay at home during coronavirus?" time="Today" image={DMNews1} />
+                    <NewsItem title="Consume yellow citrus helps you healthier" time="Today" image={DMNews2} />
+                    <NewsItem title="Learn how to make a proper orange juice at home" time="Today" image={DMNews3} />
                     <Gap height={30} />
                 </ScrollView>
             </View>

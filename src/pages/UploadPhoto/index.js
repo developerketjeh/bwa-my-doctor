@@ -1,8 +1,8 @@
-import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
-import { ICAddPhoto, ILPhotoNull } from '../../assets'
-import { Button, Gap, Header, Link } from '../../components'
-import { colors, fonts } from '../../utils'
+import React from 'react';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import { ICAddPhoto, ILPhotoNull } from '../../assets';
+import { Button, Gap, Header, Link } from '../../components';
+import { colors, fonts } from '../../utils';
 
 const UploadPhoto = ({ navigation }) => {
     return (
@@ -18,9 +18,9 @@ const UploadPhoto = ({ navigation }) => {
                     <Text style={styles.role}>Product Designer</Text>
                 </View>
                 <View>
-                    <Button title="Upload and Continue" />
+                    <Button title="Upload and Continue" onPress={() => navigation.replace("MainApp")} />
                     <Gap height={30} />
-                    <Link text="Skip for this" align="center" size={16} />
+                    <Link text="Skip for this" align="center" size={16} onPress={() => navigation.replace("MainApp")} />
                 </View>
             </View>
         </View>

@@ -10,7 +10,7 @@ const UpdateProfile = ({ navigation }) => {
             <Header title="Edit Profile" onPress={() => navigation.goBack()} />
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.form}>
-                    <Profile avatar={DMUser} type="edit-profile" />
+                    <Profile avatar={DMUser} isRemove />
                     <Gap height={26} />
                     <Input label="Full Name" />
                     <Gap height={24} />

@@ -1,8 +1,8 @@
-import React from 'react'
-import { StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { colors, fonts } from '../../../utils'
-import BtnIconSend from './BtnIconSend'
-import IconOnly from './IconOnly'
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { colors, fonts } from '../../../utils';
+import BtnIconSend from './BtnIconSend';
+import IconOnly from './IconOnly';
 
 const Button = ({ type, title, onPress, icon, disabled }) => {
     if (type === 'icon-only') {

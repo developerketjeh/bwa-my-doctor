@@ -1,16 +1,15 @@
-import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
-import { DMNews1 } from '../../../assets'
-import { colors, fonts } from '../../../utils'
+import React from 'react';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import { colors, fonts } from '../../../utils';
 
-const NewsItem = ({ title, time }) => {
+const NewsItem = ({ title, time, image }) => {
     return (
         <View style={styles.container}>
             <View style={styles.titleWrapper}>
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.time}>{time}</Text>
             </View>
-            <Image source={DMNews1} style={styles.newsImage} />
+            <Image source={image} style={styles.newsImage} />
         </View>
     )
 }
