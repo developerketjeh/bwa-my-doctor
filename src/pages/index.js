@@ -8,6 +8,7 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import SplashScreen from "./SplashScreen";
 import UploadPhoto from "./UploadPhoto";
+import UserProfile from "./UserProfile";
 
 export {
     Chat,
@@ -20,4 +21,5 @@ export {
     SignUp,
     SplashScreen,
     UploadPhoto,
+    UserProfile,
 }
