@@ -6,6 +6,7 @@ import HomeProfile from "./HomeProfile";
 import InputChat from "./InputChat";
 import List from "./List";
 import ListHospital from "./ListHospital";
+import Loading from "./Loading";
 import NewsItem from "./NewsItem";
 import Profile from "./Profile";
 import ProfileItem from "./ProfileItem";
@@ -20,6 +21,7 @@ export {
     InputChat,
     List,
     ListHospital,
+    Loading,
     NewsItem,
     Profile,
     ProfileItem,
