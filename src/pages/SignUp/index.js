@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { Button, Gap, Header, Input, Loading } from '../../components';
-import { colors, useForm } from '../../utils';
+import { colors, storeData, useForm } from '../../utils';
 import { Firebase } from '../../config';
-import { showMessage, hideMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
 
 const SignUp = ({ navigation }) => {
     const [register, setRegister] = useForm({
@@ -17,7 +17,6 @@ const SignUp = ({ navigation }) => {
         setRegister(label, value)
     };
     const save = () => {
-        console.log('register', register);
         setLoading(true);
         Firebase.auth().createUserWithEmailAndPassword(register.email, register.password)
             .then((userCredential) => {
@@ -33,11 +32,13 @@ const SignUp = ({ navigation }) => {
                     .database()
                     .ref('users/' + user.uid + '/')
                     .set(data);
+                
                 showMessage({
                     message: 'Sukses register',
                     type: "success",
                     duration: 2000,
                 });
+                storeData('@user', data, 'object');
                 navigation.navigate('UploadPhoto');
             })
             .catch((error) => {

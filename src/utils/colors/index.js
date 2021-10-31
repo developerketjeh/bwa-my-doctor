@@ -7,6 +7,7 @@ const mainColors = {
     grey2: '#E9E9E9',
     grey3: '#8092AF',
     grey4: '#EDEEF0',
+    grey5: '#B1B7C2',
     blue1: '#0066CB',
     black1: '#000000',
     black2: 'rgba(0, 0, 0, 0.5)',
@@ -37,6 +38,10 @@ export const colors = {
         },
         message: {
             background: mainColors.blue1
+        },
+        disabled: {
+            background: mainColors.grey4,
+            text: mainColors.grey5
         }
     },
     border: mainColors.grey2,
