@@ -1,17 +1,25 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
-import { DMUser, ICFemale, ICMale, ICRemovePhoto } from '../../../assets';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ICFemale, ICMale, ICRemovePhoto, ILPhotoNull } from '../../../assets';
 import { colors, fonts } from '../../../utils';
 
-const Profile = ({ name, role, type, avatar, isRemove }) => {
+const Profile = ({ name, role, type, avatar, isRemove, onPress }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.avatarWrapper}>
-        <Image source={avatar ? { uri: avatar } : DMUser} style={styles.avatar} />
-        {isRemove && <ICRemovePhoto style={styles.icon} />}
-        {type === 'doctor-female' && <ICFemale style={styles.icon} />}
-        {type === 'doctor-male' && <ICMale style={styles.icon} />}
-      </View>
+      {
+        isRemove ? (
+          <TouchableOpacity style={styles.avatarWrapper} onPress={onPress}>
+            <Image source={avatar ? { uri: avatar } : ILPhotoNull} style={styles.avatar} />
+            <ICRemovePhoto style={styles.icon} />
+          </TouchableOpacity>
+        ) : (
+          <View style={styles.avatarWrapper}>
+            <Image source={avatar ? { uri: avatar } : ILPhotoNull} style={styles.avatar} />
+            {type === 'doctor-female' && <ICFemale style={styles.icon} />}
+            {type === 'doctor-male' && <ICMale style={styles.icon} />}
+          </View>
+        )
+      }
       {name ? <Text style={styles.name}>{name}</Text> : null}
       {role ? <Text style={styles.role}>{role}</Text> : null}
     </View>
