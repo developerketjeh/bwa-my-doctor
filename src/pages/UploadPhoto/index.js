@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ICAddPhoto, ICRemovePhoto, ILPhotoNull } from '../../assets';
 import { Button, Gap, Header, Link } from '../../components';
-import { colors, fonts, storeData } from '../../utils';
+import { colors, fonts, showWarning, storeData } from '../../utils';
 import { launchImageLibrary } from 'react-native-image-picker';
-import { showMessage } from 'react-native-flash-message';
 import { Firebase } from '../../config';
 
 const UploadPhoto = ({ navigation, route }) => {
@@ -14,11 +13,7 @@ const UploadPhoto = ({ navigation, route }) => {
   const getImage = () => {
     launchImageLibrary({ mediaType: 'photo', includeBase64: true, quality: 0.5, maxWidth: 200, maxHeight: 200 }, (response) => {
       if (response.didCancel || response.errorMessage) {
-        showMessage({
-          message: 'Oopss, sepertinya anda belum memilih fotonya?',
-          type: "warning",
-          duration: 2000,
-        })
+        showWarning('Oopss, sepertinya anda belum memilih fotonya?')
       } else {
         setImage(`data:${response.assets[response.assets.length - 1].type};base64, ${response.assets[response.assets.length - 1].base64}`);
         setHasPhoto(response.assets[response.assets.length - 1].uri);

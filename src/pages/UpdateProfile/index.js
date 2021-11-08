@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { showMessage } from 'react-native-flash-message';
 import { launchImageLibrary } from 'react-native-image-picker';
-import { Button, Gap, Header, Input, Loading, Profile } from '../../components';
+import { useDispatch } from 'react-redux';
+import { Button, Gap, Header, Input, Profile } from '../../components';
 import { Firebase } from '../../config';
-import { colors, getData, storeData } from '../../utils';
+import { colors, getData, showError, showWarning, storeData } from '../../utils';
 
 const UpdateProfile = ({ navigation }) => {
   const [user, setUser] = useState({
@@ -15,16 +15,12 @@ const UpdateProfile = ({ navigation }) => {
     uid: ''
   });
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const getImage = () => {
     launchImageLibrary({ mediaType: 'photo', includeBase64: true, quality: 0.5, maxWidth: 200, maxHeight: 200 }, (response) => {
       if (response.didCancel || response.errorMessage) {
-        showMessage({
-          message: 'Oopss, sepertinya anda belum memilih fotonya?',
-          type: "warning",
-          duration: 2000,
-        })
+        showWarning('Oopss, sepertinya anda belum memilih fotonya?')
       } else {
         setUser({
           ...user,
@@ -42,16 +38,18 @@ const UpdateProfile = ({ navigation }) => {
   };
 
   const saveProfile = () => {
-    setLoading(true);
+    dispatch({
+      type: 'SET_LOADING',
+      value: true
+    });
 
     if (password.length > 0) {
       if (password.length < 6) {
-        setLoading(false);
-        showMessage({
-          message: 'Password kurang dari 6 karakter.',
-          type: 'danger',
-          backgroundColor: colors.error
-        })
+        dispatch({
+          type: 'SET_LOADING',
+          value: false
+        });
+        showError('Password kurang dari 6 karakter.')
       } else {
         updatePassword();
         updateProfileData();
@@ -68,18 +66,10 @@ const UpdateProfile = ({ navigation }) => {
       if (user) {
         user.updatePassword(password).catch(err => {
           if (err.message === 'This operation is sensitive and requires recent authentication. Log in again before retrying this request.') {
-            showMessage({
-              message: err.message,
-              type: 'danger',
-              backgroundColor: colors.error
-            })
+            showError(err.message)
             navigation.replace('SignIn')
           }
-          showMessage({
-            message: err.message,
-            type: 'danger',
-            backgroundColor: colors.error
-          })
+          showError(err.message)
         })
       }
     })
@@ -90,15 +80,17 @@ const UpdateProfile = ({ navigation }) => {
     Firebase.database().ref(`users/${user.uid}/`).update(data)
       .then(() => {
         storeData('@user', data, 'object')
-        setLoading(false)
+        dispatch({
+          type: 'SET_LOADING',
+          value: false
+        });
       })
       .catch(err => {
-        setLoading(false)
-        showMessage({
-          message: err.message,
-          type: 'danger',
-          backgroundColor: colors.error
-        })
+        dispatch({
+          type: 'SET_LOADING',
+          value: false
+        });
+        showError(err.message)
       })
   }
   
@@ -127,7 +119,6 @@ const UpdateProfile = ({ navigation }) => {
           </View>
         </ScrollView>
       </View>
-      {loading && <Loading />}
     </>
   )
 }

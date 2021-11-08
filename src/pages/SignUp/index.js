@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { Button, Gap, Header, Input, Loading } from '../../components';
-import { colors, storeData, useForm } from '../../utils';
+import { Button, Gap, Header, Input } from '../../components';
+import { colors, showError, showSuccess, storeData, useForm } from '../../utils';
 import { Firebase } from '../../config';
-import { showMessage } from "react-native-flash-message";
+import { useDispatch } from 'react-redux';
 
 const SignUp = ({ navigation }) => {
   const [register, setRegister] = useForm({
@@ -12,17 +12,23 @@ const SignUp = ({ navigation }) => {
     email: '',
     password: ''
   });
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
   const onChange = (label, value) => {
     setRegister(label, value)
   };
   const save = () => {
-    setLoading(true);
+    dispatch({
+      type: 'SET_LOADING',
+      value: true
+    });
     Firebase.auth().createUserWithEmailAndPassword(register.email, register.password)
       .then((userCredential) => {
         const user = userCredential.user;
         setRegister('reset')
-        setLoading(false);
+        dispatch({
+          type: 'SET_LOADING',
+          value: false
+        });
         const data = {
           fullName: register.fullName,
           profession: register.profession,
@@ -34,23 +40,17 @@ const SignUp = ({ navigation }) => {
           .ref('users/' + user.uid + '/')
           .set(data);
 
-        showMessage({
-          message: 'Sukses register',
-          type: "success",
-          duration: 2000,
-        });
+        showSuccess('Sukses register')
         storeData('@user', data, 'object');
         navigation.navigate('UploadPhoto', data);
       })
       .catch((error) => {
         const errorMessage = error.message;
-        showMessage({
-          message: errorMessage === 'The email address is already in use by another account.' ? 'Maaf, email sudah terdaftar pada aplikasi.' : errorMessage,
-          type: "danger",
-          duration: 2000,
-          backgroundColor: colors.error
+        showError(errorMessage === 'The email address is already in use by another account.' ? 'Maaf, email sudah terdaftar pada aplikasi.' : errorMessage)
+        dispatch({
+          type: 'SET_LOADING',
+          value: false
         });
-        setLoading(false);
       });
   };
   return (
@@ -71,7 +71,6 @@ const SignUp = ({ navigation }) => {
           </ScrollView>
         </View>
       </View>
-      {loading && <Loading />}
     </>
   )
 }

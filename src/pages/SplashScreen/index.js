@@ -7,16 +7,18 @@ import { colors } from '../../utils/colors';
 
 const SplashScreen = ({ navigation }) => {
   useEffect(() => {
-    setTimeout(() => {
-      Firebase.auth().onAuthStateChanged((user) => {
+    const unSubscribe = Firebase.auth().onAuthStateChanged((user) => {
+      setTimeout(() => {
         if (user) {
           navigation.replace("MainApp")
         } else {
           navigation.replace("GetStarted")
         }
-      })
-    }, 3000)
-  })
+      }, 3000)
+    })
+
+    return () => unSubscribe()
+  }, [navigation])
   return (
     <View style={styles.container}>
       <ICLogo />

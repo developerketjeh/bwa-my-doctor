@@ -1,32 +1,38 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ScrollView, StyleSheet, Text } from 'react-native';
-import { showMessage } from 'react-native-flash-message';
+import { useDispatch } from 'react-redux';
 import { ICLogo } from '../../assets';
-import { Button, Gap, Input, Link, Loading } from '../../components';
+import { Button, Gap, Input, Link } from '../../components';
 import { Firebase } from '../../config';
-import { colors, fonts, storeData, useForm } from '../../utils';
+import { colors, fonts, showError, storeData, useForm } from '../../utils';
 
 const SignIn = ({ navigation }) => {
   const [login, setLogin] = useForm({
     email: '',
     password: ''
   });
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
   const onChange = (label, value) => {
     setLogin(label, value)
   };
   const signIn = () => {
-    setLoading(true);
+    dispatch({
+      type: 'SET_LOADING',
+      value: true
+    });
     Firebase.auth().signInWithEmailAndPassword(login.email, login.password)
       .then(res => {
-        setLoading(false);
+        dispatch({
+          type: 'SET_LOADING',
+          value: false
+        });
         Firebase.database().ref(`users/${res.user.uid}/`).once('value')
-        .then(user => {
-          if (user.val()) {
-            storeData('@user', user.val(), 'object')
-            navigation.navigate('MainApp');
-          }
-        })
+          .then(user => {
+            if (user.val()) {
+              storeData('@user', user.val(), 'object')
+              navigation.navigate('MainApp');
+            }
+          })
       })
       .catch(err => {
         let message = ''
@@ -37,13 +43,11 @@ const SignIn = ({ navigation }) => {
         } else {
           message = err.message
         }
-        setLoading(false);
-        showMessage({
-          message: message,
-          type: "danger",
-          duration: 2000,
-          backgroundColor: colors.error
+        dispatch({
+          type: 'SET_LOADING',
+          value: false
         });
+        showError(message)
       })
   }
   return (
@@ -61,7 +65,6 @@ const SignIn = ({ navigation }) => {
         <Gap height={30} />
         <Link text="Create New Account" size={16} align="center" onPress={() => navigation.navigate("SignUp")} />
       </ScrollView>
-      {loading && <Loading />}
     </>
   )
 }

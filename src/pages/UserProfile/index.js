@@ -1,20 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { DMUser } from '../../assets';
 import { Gap, Header, List, Profile } from '../../components';
-import { colors, getData } from '../../utils';
+import { Firebase } from '../../config';
+import { colors, getData, showError } from '../../utils';
 
 const UserProfile = ({ navigation }) => {
   const [user, setUser] = useState({
     photo: '',
     fullName: '',
     profession: ''
-  })
+  });
+
   useEffect(() => {
     getData('@user', 'object').then(res => {
       setUser(res)
     })
-  }, [])
+  }, []);
+
+  const signOut = () => {
+    Firebase.auth().signOut()
+      .then(() => {
+        navigation.replace('GetStarted')
+      })
+      .catch(err => {
+        showError(err.message)
+      })
+  }
+
   return (
     <View style={styles.container}>
       <Header title="Profile" onPress={() => navigation.goBack()} />
@@ -24,7 +36,7 @@ const UserProfile = ({ navigation }) => {
       <List onPress={() => navigation.navigate("UpdateProfile")} icon="profile" name="Edit Profile" desc="Last updated yesterday" type="next" />
       <List icon="language" name="Language" desc="Available 12 languages" type="next" />
       <List icon="rate" name="Give Us Rate" desc="On Google Play Store" type="next" />
-      <List icon="file" name="Help Center" desc="Read our guidelines" type="next" />
+      <List icon="file" name="Sign Out" desc="Sign Out Application" type="next" onPress={signOut} />
     </View>
   )
 }

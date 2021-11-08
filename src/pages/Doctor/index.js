@@ -3,13 +3,21 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { DoctorCategory, Gap, HomeProfile, NewsItem, RatedDoctor } from '../../components';
 import { colors, fonts, getData } from '../../utils';
 import { JSONCategoryDoctor } from '../../json';
-import { DMDoctor1, DMDoctor2, DMDoctor3, DMNews1, DMNews2, DMNews3 } from '../../assets';
+import { DMDoctor1, DMDoctor2, DMDoctor3, DMNews1, DMNews2, DMNews3, ILPhotoNull } from '../../assets';
 
 const Doctor = ({ navigation }) => {
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({
+    fullName: '',
+    profession: '',
+    photo: ILPhotoNull
+  })
   useEffect(() => {
     getData('@user', 'object').then(res => {
-      setUser(res)
+      setUser({
+        fullName: res.fullName,
+        profession: res.profession,
+        photo: { uri: res.photo }
+      })
     })
   }, [])
   return (
