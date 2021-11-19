@@ -5,13 +5,12 @@ import firebase from "firebase";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA7enk_2OZM1-oDC4BqhHeaP-AJEfgvFFg",
-  authDomain: "mydoctor-69cff.firebaseapp.com",
-  projectId: "mydoctor-69cff",
-  storageBucket: "mydoctor-69cff.appspot.com",
-  messagingSenderId: "4796081623",
-  appId: "1:4796081623:web:5aecfd5f351fd7454b5792",
-  databaseURL: "https://mydoctor-69cff-default-rtdb.asia-southeast1.firebasedatabase.app/"
+  apiKey: "AIzaSyD1phYQHkyUiEnd-fBzFk5Wywh57Mja5r4",
+  authDomain: "my-doctor-b1803.firebaseapp.com",
+  projectId: "my-doctor-b1803",
+  storageBucket: "my-doctor-b1803.appspot.com",
+  messagingSenderId: "195850833477",
+  appId: "1:195850833477:web:8f99e6491f775495775d2c",
 };
 
 // Initialize Firebase

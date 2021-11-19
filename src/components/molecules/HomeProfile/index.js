@@ -1,11 +1,12 @@
 import React from 'react';
 import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { ILPhotoNull } from '../../../assets';
 import { colors, fonts } from '../../../utils';
 
 const HomeProfile = ({ onPress, user }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Image source={user.photo} style={styles.avatar} />
+      <Image source={user.photo.uri ? user.photo : ILPhotoNull} style={styles.avatar} />
       <View>
         <Text style={styles.name}>{user.fullName}</Text>
         <Text style={styles.role}>{user.profession}</Text>

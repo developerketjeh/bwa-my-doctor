@@ -1,16 +1,69 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { DoctorCategory, Gap, HomeProfile, NewsItem, RatedDoctor } from '../../components';
-import { colors, fonts, getData } from '../../utils';
-import { JSONCategoryDoctor } from '../../json';
-import { DMDoctor1, DMDoctor2, DMDoctor3, DMNews1, DMNews2, DMNews3, ILPhotoNull } from '../../assets';
+import { colors, fonts, getData, showError } from '../../utils';
+import { DMDoctor1, DMDoctor2, DMDoctor3, ILPhotoNull } from '../../assets';
+import { Firebase } from '../../config';
 
 const Doctor = ({ navigation }) => {
   const [user, setUser] = useState({
     fullName: '',
     profession: '',
     photo: ILPhotoNull
-  })
+  });
+  const [news, setNews] = useState([]);
+  const [categoryDoctor, setCategoryDoctor] = useState([]);
+  const [doctors, setDoctors] = useState([]);
+
+  const getNews = () => {
+    Firebase.database().ref('news/').once('value').then(res => {
+      if (res.val()) {
+        setNews(res.val());
+      }
+    })
+      .catch(err => {
+        showError(err.message)
+      })
+  }
+
+  const getCategoryDoctor = () => {
+    Firebase.database().ref('category_doctor/').once('value').then(res => {
+      if (res.val()) {
+        setCategoryDoctor(res.val());
+      }
+    })
+      .catch(err => {
+        showError(err.message)
+      })
+  }
+
+  const getTopRatedDoctor = () => {
+    Firebase.database().ref('doctors/').orderByChild('rate').limitToLast(3).once('value').then(res => {
+      if (res.val()) {
+        if (res.val()) {
+          const data = [];
+          const oldData = res.val();
+          Object.keys(oldData).map(key => {
+            data.push({
+              id: key,
+              data: oldData[key]
+            })
+          })
+          setDoctors(data)
+        }
+      }
+    })
+      .catch(err => {
+        showError(err.message)
+      })
+  }
+
+  useEffect(() => {
+    getCategoryDoctor()
+    getNews()
+    getTopRatedDoctor()
+  }, [])
+
   useEffect(() => {
     getData('@user', 'object').then(res => {
       setUser({
@@ -35,7 +88,7 @@ const Doctor = ({ navigation }) => {
               <View style={styles.category}>
                 <Gap width={32} />
                 {
-                  JSONCategoryDoctor.data.map((category) => (
+                  categoryDoctor.map((category) => (
                     <DoctorCategory onPress={() => navigation.navigate("ChooseDoctor")} category={category.category} key={category.id} />
                   ))
                 }
@@ -46,15 +99,19 @@ const Doctor = ({ navigation }) => {
           <Gap height={30} />
           <View style={styles.wrapperContent}>
             <Text style={styles.sectionLabel}>Top Rated Doctors</Text>
-            <RatedDoctor avatar={DMDoctor1} onPress={() => navigation.navigate("DoctorProfile")} role="Pediatrician" doctorName="Alexa Rachel" />
-            <RatedDoctor avatar={DMDoctor2} onPress={() => navigation.navigate("DoctorProfile")} role="Dentist" doctorName="Sunny Frank" />
-            <RatedDoctor avatar={DMDoctor3} onPress={() => navigation.navigate("DoctorProfile")} role="Podiatrist" doctorName="Poe Minn" />
+            {
+              doctors.map(item => (
+                <RatedDoctor key={item.id} avatar={{ uri: item.data.photo }} onPress={() => navigation.navigate("DoctorProfile")} role={item.data.profession} doctorName={item.data.fullName} />
+              ))
+            }
             <Gap height={30} />
             <Text style={styles.sectionLabel}>Good News</Text>
           </View>
-          <NewsItem title="Is it safe to stay at home during coronavirus?" time="Today" image={DMNews1} />
-          <NewsItem title="Consume yellow citrus helps you healthier" time="Today" image={DMNews2} />
-          <NewsItem title="Learn how to make a proper orange juice at home" time="Today" image={DMNews3} />
+          {
+            news.map((val) => (
+              <NewsItem title={val.title} time={val.date} image={val.image} key={val.id} />
+            ))
+          }
           <Gap height={30} />
         </ScrollView>
       </View>

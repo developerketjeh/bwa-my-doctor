@@ -20,7 +20,7 @@ const DoctorCategory = ({ category, onPress }) => {
         <TouchableOpacity style={styles.container} onPress={onPress}>
             <Icon />
             <Text style={styles.label}>Saya butuh</Text>
-            <Text style={styles.category}>{category === 'umum' || category === 'obat' ? `dokter ${category}` : category}</Text>
+            <Text style={styles.category}>{category !== 'psikiater' ? `dokter ${category}` : category}</Text>
         </TouchableOpacity>
     )
 }
