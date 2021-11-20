@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { ILPhotoNull } from '../../assets';
 import { Gap, Header, List, Profile } from '../../components';
 import { Firebase } from '../../config';
 import { colors, getData, showError } from '../../utils';
@@ -31,7 +32,7 @@ const UserProfile = ({ navigation }) => {
     <View style={styles.container}>
       <Header title="Profile" onPress={() => navigation.goBack()} />
       <Gap height={10} />
-      <Profile avatar={user.photo} name={user.fullName} role={user.profession} />
+      <Profile avatar={user.photo ? { uri: user.photo } : ILPhotoNull} name={user.fullName} role={user.profession} />
       <Gap height={14} />
       <List onPress={() => navigation.navigate("UpdateProfile")} icon="profile" name="Edit Profile" desc="Last updated yesterday" type="next" />
       <List icon="language" name="Language" desc="Available 12 languages" type="next" />

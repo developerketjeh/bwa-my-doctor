@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { ICFemale, ICMale, ICRemovePhoto, ILPhotoNull } from '../../../assets';
+import { ICFemale, ICMale, ICRemovePhoto } from '../../../assets';
 import { colors, fonts } from '../../../utils';
 
 const Profile = ({ name, role, type, avatar, isRemove, onPress }) => {
@@ -9,12 +9,12 @@ const Profile = ({ name, role, type, avatar, isRemove, onPress }) => {
       {
         isRemove ? (
           <TouchableOpacity style={styles.avatarWrapper} onPress={onPress}>
-            <Image source={avatar ? { uri: avatar } : ILPhotoNull} style={styles.avatar} />
+            <Image source={avatar} style={styles.avatar} />
             <ICRemovePhoto style={styles.icon} />
           </TouchableOpacity>
         ) : (
           <View style={styles.avatarWrapper}>
-            <Image source={avatar ? { uri: avatar } : ILPhotoNull} style={styles.avatar} />
+            <Image source={avatar} style={styles.avatar} />
             {type === 'doctor-female' && <ICFemale style={styles.icon} />}
             {type === 'doctor-male' && <ICMale style={styles.icon} />}
           </View>
@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.text.secondary,
     marginTop: 2,
-    textAlign: 'center'
+    textAlign: 'center',
+    textTransform: 'capitalize'
   },
   icon: {
     position: 'absolute',

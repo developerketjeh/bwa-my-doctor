@@ -10,7 +10,9 @@ const Hospital = () => {
   useEffect(() => {
     Firebase.database().ref('hospitals/').once('value').then(res => {
       if (res.val()) {
-        setHospitals(res.val());
+        const data = res.val();
+        const filterData = data.filter(el => el !== null);
+        setHospitals(filterData);
       }
     })
       .catch(err => {
@@ -26,7 +28,7 @@ const Hospital = () => {
       <View style={styles.content}>
         {
           hospitals.map(item => (
-            <ListHospital title={item.hospitalName} alamat={item.address} picture={item.image} />
+            <ListHospital title={item.hospitalName} alamat={item.address} picture={item.image} key={item.id} />
           ))
         }
       </View>

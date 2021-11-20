@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { DoctorCategory, Gap, HomeProfile, NewsItem, RatedDoctor } from '../../components';
 import { colors, fonts, getData, showError } from '../../utils';
-import { DMDoctor1, DMDoctor2, DMDoctor3, ILPhotoNull } from '../../assets';
+import { ILPhotoNull } from '../../assets';
 import { Firebase } from '../../config';
 
 const Doctor = ({ navigation }) => {
@@ -18,7 +18,9 @@ const Doctor = ({ navigation }) => {
   const getNews = () => {
     Firebase.database().ref('news/').once('value').then(res => {
       if (res.val()) {
-        setNews(res.val());
+        const data = res.val();
+        const filterData = data.filter(el => el !== null);
+        setNews(filterData);
       }
     })
       .catch(err => {
@@ -29,7 +31,9 @@ const Doctor = ({ navigation }) => {
   const getCategoryDoctor = () => {
     Firebase.database().ref('category_doctor/').once('value').then(res => {
       if (res.val()) {
-        setCategoryDoctor(res.val());
+        const data = res.val();
+        const filterData = data.filter(el => el !== null);
+        setCategoryDoctor(filterData);
       }
     })
       .catch(err => {
@@ -89,7 +93,7 @@ const Doctor = ({ navigation }) => {
                 <Gap width={32} />
                 {
                   categoryDoctor.map((category) => (
-                    <DoctorCategory onPress={() => navigation.navigate("ChooseDoctor")} category={category.category} key={category.id} />
+                    <DoctorCategory onPress={() => navigation.navigate("ChooseDoctor", category)} category={category.category} key={category.id} />
                   ))
                 }
                 <Gap width={22} />
@@ -101,7 +105,7 @@ const Doctor = ({ navigation }) => {
             <Text style={styles.sectionLabel}>Top Rated Doctors</Text>
             {
               doctors.map(item => (
-                <RatedDoctor key={item.id} avatar={{ uri: item.data.photo }} onPress={() => navigation.navigate("DoctorProfile")} role={item.data.profession} doctorName={item.data.fullName} />
+                <RatedDoctor key={item.id} avatar={{ uri: item.data.photo }} onPress={() => navigation.navigate("DoctorProfile", item)} role={item.data.profession} doctorName={item.data.fullName} />
               ))
             }
             <Gap height={30} />

@@ -93,7 +93,7 @@ const UpdateProfile = ({ navigation }) => {
         showError(err.message)
       })
   }
-  
+
   useEffect(() => {
     getData('@user', 'object').then(res => {
       setUser(res)
@@ -105,7 +105,7 @@ const UpdateProfile = ({ navigation }) => {
         <Header title="Edit Profile" onPress={() => navigation.goBack()} />
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.form}>
-            <Profile avatar={user.photo} isRemove onPress={getImage} />
+            <Profile avatar={{ uri: user.photo }} isRemove onPress={getImage} />
             <Gap height={26} />
             <Input label="Full Name" value={user.fullName} onChangeText={(text) => onChange('fullName', text)} />
             <Gap height={24} />
