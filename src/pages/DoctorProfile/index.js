@@ -9,13 +9,13 @@ const DoctorProfile = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
       <Header title="Doctor Profile" onPress={() => navigation.goBack()} />
-      <Profile avatar={{uri: dataDoctor.data.photo}} name={dataDoctor.data.fullName} role={dataDoctor.data.profession} type={dataDoctor.data.gender === "wanita" ? "doctor-female" : "doctor-male"} />
+      <Profile avatar={{ uri: dataDoctor.data.photo }} name={dataDoctor.data.fullName} role={dataDoctor.data.profession} type={dataDoctor.data.gender === "wanita" ? "doctor-female" : "doctor-male"} />
       <Gap height={10} />
       <ProfileItem label="Alumnus" value={dataDoctor.data.university} />
       <ProfileItem label="Tempat Praktik" value={dataDoctor.data.hospital_address} />
       <ProfileItem label="No. STR" value={dataDoctor.data.str_number} />
       <View style={styles.btnProfile}>
-        <Button title="Start Consultation" onPress={() => navigation.navigate("Chat")} />
+        <Button title="Start Consultation" onPress={() => navigation.navigate("Chat", dataDoctor)} />
       </View>
     </View>
   )
